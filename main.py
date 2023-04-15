@@ -17,10 +17,10 @@ def hi(app, msg):
 
 @app.on_message(filters.text)
 def replytomsg(app, msg):
-   if msg.text !== "/start":
-      app.send_chat_action(msg.chat.id, enums.ChatAction.TYPING)
-      msgchat = requests.get("https://alsh-bg.ml/openai/x.php?key="+os.environ['api_key']+"&text=" + msg.text).json()['msg']
-      app.send_message(msg.chat.id, msgchat)
-      return
+  if msg.text !== "/start":
+    app.send_chat_action(msg.chat.id, enums.ChatAction.TYPING)
+    msgchat = requests.get("https://alsh-bg.ml/openai/x.php?key="+os.environ['api_key']+"&text=" + msg.text).json()['msg']
+    app.send_message(msg.chat.id, msgchat)
+    return
   
 app.run()
