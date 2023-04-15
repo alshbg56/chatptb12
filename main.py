@@ -3,7 +3,7 @@ from pyrogram import Client, filters, enums
 
 api_id = 24726477
 api_hash = "ba993a0f5b0bccfbf2a25d061826eeed"
-bot_token = "2041835826:AAEISxSS-HSfA4M9VO0cQiq-MDJPHJpVcRU"
+bot_token = os.environ['bot_token']
 
 app = Client(
     "my_bot",
@@ -18,7 +18,7 @@ def hi(app, msg):
 @app.on_message(filters.text)
 def replytomsg(app, msg):
   app.send_chat_action(msg.chat.id, enums.ChatAction.TYPING)
-  msgchat = requests.get("https://alsh-bg.ml/openai/x.php?key=mO8r6ndtUUZq9LhIdLZnCq8d8Bb1FR93LKtVZLtERtnuY4cm8a&text=" + msg.text).json()['msg']
+  msgchat = requests.get("https://alsh-bg.ml/openai/x.php?key="+os.environ['api_key']+"&text=" + msg.text).json()['msg']
   app.send_message(msg.chat.id, msgchat)
   return
   
